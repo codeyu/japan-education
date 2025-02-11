@@ -71,7 +71,7 @@ def process_page(url):
         base_dir = os.path.join('英検', grade)
         os.makedirs(base_dir, exist_ok=True)
         
-        # 查找所有PDF和MP3链接
+        # 查找所有MP3链接
         for link in soup.find_all('a', href=True):
             href = link.get('href')
             if not href:
@@ -79,19 +79,31 @@ def process_page(url):
                 
             full_url = urljoin(url, href)
             
-            # 处理PDF文件
-            if href.endswith('.pdf'):
+            if 'audio' in href or href.endswith('.mp3'):
+                # 获取文件名和路径信息
                 filename = os.path.basename(href)
-                save_path = os.path.join(base_dir, filename)
-                print(f"下载PDF: {filename}")
-                download_file(full_url, save_path, 'pdf')
+                parent_path = os.path.basename(os.path.dirname(href))
                 
-            # 处理MP3文件
-            elif 'audio' in href or href.endswith('.mp3'):
-                filename = os.path.basename(href)
+                # 构建新的文件名（加入父目录名）
                 if not filename.endswith('.mp3'):
                     filename += '.mp3'
+                filename = f"{parent_path}_{filename}"
+                
                 save_path = os.path.join(base_dir, 'audio', filename)
+                
+                # 检查文件是否已存在
+                if os.path.exists(save_path):
+                    try:
+                        response = requests.head(full_url)
+                        remote_size = int(response.headers.get('content-length', 0))
+                        local_size = os.path.getsize(save_path)
+                        
+                        if remote_size == local_size:
+                            print(f"文件已存在，跳过: {filename}")
+                            continue
+                    except Exception as e:
+                        print(f"检查文件大小失败: {str(e)}")
+                
                 print(f"下载MP3: {filename}")
                 download_file(full_url, save_path, 'mp3')
                 
