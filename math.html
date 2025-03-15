@@ -1,0 +1,711 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="sugakubraindumps_style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../watakuma/element/jquery.js"></script>
+    <script type="text/javascript" src="../watakuma/element/jquery.lightpop-0.8.5.js"></script>
+    <script type="text/javascript" src="../watakuma/element/watakuma.js"></script>
+    <title>熊本市教育センター　熊本市地域情報ネットワーク(e-net)</title>
+
+    <style type="text/css">
+        button[data-v-4f04decd]:focus {
+            outline: 0
+        }
+
+        .TransIcon[data-v-4f04decd] {
+            position: fixed !important;
+            transition: all .2s linear;
+            animation: fadeIn-4f04decd .2s linear;
+            z-index: 999999999999999;
+            filter: unset;
+            width: 34px;
+            height: 34px;
+            border-radius: 11px;
+            border: 1px solid #f1f1f1;
+            overflow: hidden
+        }
+
+        .TransIcon img[data-v-4f04decd] {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            pointer-events: none
+        }
+
+        .TransIcon[data-v-4f04decd]:hover {
+            cursor: pointer
+        }
+
+        .TransDialog[data-v-4f04decd] {
+            position: fixed !important;
+            animation: fadeIn-4f04decd .2s linear;
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #f1f1f1;
+            box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, .1);
+            overflow: hidden;
+            z-index: 999999999999999
+        }
+
+        .TransDialog .dragBlock[data-v-4f04decd] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0
+        }
+
+        .TransDialog .dragBlock[data-v-4f04decd]:hover {
+            cursor: move
+        }
+
+        .TransDialog .dragBlock .top-drap-block[data-v-4f04decd],
+        .TransDialog .dragBlock .left-drap-block[data-v-4f04decd] {
+            position: absolute;
+            left: 0
+        }
+
+        .TransDialog .dragBlock .top-drap-block[data-v-4f04decd] {
+            right: 0;
+            height: 15px
+        }
+
+        .TransDialog .dragBlock .left-drap-block[data-v-4f04decd] {
+            height: 55px;
+            right: 120px
+        }
+
+        .TransDialog .dragBlock.preview .left-drap-block[data-v-4f04decd] {
+            width: 20px;
+            height: 79px;
+            right: 160px
+        }
+
+        .TransDialog .dragBlock.scale .left-drap-block[data-v-4f04decd] {
+            right: 53px;
+            left: 177px;
+            height: 40px
+        }
+
+        .MOJiWebExtensionpanelObject[data-v-4f04decd] {
+            height: 100%;
+            width: calc(100% + 5px);
+            border: none;
+            overflow: hidden;
+            z-index: 999999999999999
+        }
+
+        @keyframes fadeIn-4f04decd {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /*# sourceURL=webpack://src/components/TransDialog/App.vue */
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9zcmMvY29tcG9uZW50cy9UcmFuc0RpYWxvZy9BcHAudnVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdBLDhCQUNFLFNBQUEsQ0FHRiw0QkFDRSx5QkFBQSxDQUNBLHlCQUFBLENBQ0Esb0NBQUEsQ0FHQSx1QkFYZSxDQVlmLFlBQUEsQ0FDQSxVQUFBLENBQ0EsV0FBQSxDQUNBLGtCQUFBLENBQ0Esd0JBQUEsQ0FDQSxlQUFBLENBQ0EsZ0NBQ0UsVUFBQSxDQUNBLFdBQUEsQ0FDQSxnQkFBQSxDQUNBLG1CQUFBLENBSUosa0NBQ0UsY0FBQSxDQUdGLDhCQUNFLHlCQUFBLENBRUEsb0NBQUEsQ0FHQSxlQUFBLENBQ0Esa0JBQUEsQ0FDQSx3QkFBQSxDQUVBLDBDQUFBLENBQ0EsZUFBQSxDQUNBLHVCQTFDZSxDQTJDZix5Q0FDRSxpQkFBQSxDQUNBLEtBQUEsQ0FDQSxNQUFBLENBQ0EsT0FBQSxDQUdBLCtDQUNFLFdBQUEsQ0FHRixtSEFDRSxpQkFBQSxDQUNBLE1BQUEsQ0FHRix5REFDRSxPQUFBLENBQ0EsV0FBQSxDQUVGLDBEQUNFLFdBQUEsQ0FDQSxXQUFBLENBS0Esa0VBQ0UsVUFBQSxDQUNBLFdBQUEsQ0FDQSxXQUFBLENBTUYsZ0VBQ0UsVUFBQSxDQUNBLFVBQUEsQ0FDQSxXQUFBLENBTVIsOENBQ0UsV0FBQSxDQUNBLHNCQUFBLENBQ0EsV0FBQSxDQUNBLGVBQUEsQ0FFQSx1QkE5RmUsQ0FxR2pCLDJCQUNFLEtBQ0UsU0FBQSxDQUVGLEdBQ0UsU0FBQSxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnQC9zY3NzL3ZhcmlhYmxlcy5zY3NzJztcblxuJGRpYWxvZy16LWluZGV4OiA5OTk5OTk5OTk5OTk5OTk7XG5idXR0b246Zm9jdXMge1xuICBvdXRsaW5lOiAwO1xufVxuXG4uVHJhbnNJY29uIHtcbiAgcG9zaXRpb246IGZpeGVkICFpbXBvcnRhbnQ7XG4gIHRyYW5zaXRpb246IGFsbCAwLjJzIGxpbmVhcjtcbiAgYW5pbWF0aW9uOiBmYWRlSW4gMC4ycyBsaW5lYXI7XG4gIC8vIHdpZHRoOiAyNHB4O1xuICAvLyBoZWlnaHQ6IDI0cHg7XG4gIHotaW5kZXg6ICRkaWFsb2ctei1pbmRleDtcbiAgZmlsdGVyOiB1bnNldDtcbiAgd2lkdGg6IDM0cHg7XG4gIGhlaWdodDogMzRweDtcbiAgYm9yZGVyLXJhZGl1czogMTFweDtcbiAgYm9yZGVyOiAxcHggc29saWQgI0YxRjFGMTtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgaW1nIHtcbiAgICB3aWR0aDogMzJweDtcbiAgICBoZWlnaHQ6IDMycHg7XG4gICAgb2JqZWN0LWZpdDogY292ZXI7XG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XG4gIH1cbn1cblxuLlRyYW5zSWNvbjpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLlRyYW5zRGlhbG9nIHtcbiAgcG9zaXRpb246IGZpeGVkICFpbXBvcnRhbnQ7XG4gIC8vIHRyYW5zaXRpb246IGFsbCAwLjJzIGxpbmVhcjtcbiAgYW5pbWF0aW9uOiBmYWRlSW4gMC4ycyBsaW5lYXI7XG4gIC8vIHdpZHRoOiAzOTJweDtcbiAgLy8gaGVpZ2h0OiA0NDhweDtcbiAgYmFja2dyb3VuZDogI2ZmZmZmZjtcbiAgYm9yZGVyLXJhZGl1czogMTZweDtcbiAgYm9yZGVyOiAxcHggc29saWQgI2YxZjFmMTtcbiAgLy8gb3ZlcmZsb3c6IGF1dG87XG4gIGJveC1zaGFkb3c6IDBweCA4cHggNDBweCAwcHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICB6LWluZGV4OiAkZGlhbG9nLXotaW5kZXg7XG4gIC5kcmFnQmxvY2sge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6MDtcbiAgICBsZWZ0OiAwO1xuICAgIHJpZ2h0OiAwO1xuICAgIC8vIGhlaWdodDogNjBweDtcblxuICAgICY6aG92ZXIge1xuICAgICAgY3Vyc29yOiBtb3ZlO1xuICAgIH1cblxuICAgIC50b3AtZHJhcC1ibG9jaywgLmxlZnQtZHJhcC1ibG9jayB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBsZWZ0OiAwO1xuICAgIH1cbiAgICAvLyBkZWZhbHVsdFxuICAgIC50b3AtZHJhcC1ibG9jayB7XG4gICAgICByaWdodDogMDtcbiAgICAgIGhlaWdodDogMTVweDtcbiAgICB9XG4gICAgLmxlZnQtZHJhcC1ibG9jayB7XG4gICAgICBoZWlnaHQ6IDU1cHg7XG4gICAgICByaWdodDogMTIwcHg7XG4gICAgfVxuXG4gICAgLy8gcHJldmlld1xuICAgICYucHJldmlldyB7XG4gICAgICAubGVmdC1kcmFwLWJsb2NrIHtcbiAgICAgICAgd2lkdGg6IDIwcHg7XG4gICAgICAgIGhlaWdodDogNzlweDtcbiAgICAgICAgcmlnaHQ6IDE2MHB4O1xuICAgICAgfVxuICAgIH1cblxuICAgIC8vIGRpYWxvZyB3aXRoIHNjYWxlXG4gICAgJi5zY2FsZSB7XG4gICAgICAubGVmdC1kcmFwLWJsb2NrIHtcbiAgICAgICAgcmlnaHQ6IDUzcHg7XG4gICAgICAgIGxlZnQ6IDE3N3B4O1xuICAgICAgICBoZWlnaHQ6IDQwcHg7XG4gICAgICB9XG4gICAgfVxuICB9XG59XG5cbi5NT0ppV2ViRXh0ZW5zaW9ucGFuZWxPYmplY3Qge1xuICBoZWlnaHQ6IDEwMCU7XG4gIHdpZHRoOiBjYWxjKDEwMCUgKyA1cHgpO1xuICBib3JkZXI6IG5vbmU7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIC8vIGJhY2tncm91bmQ6ICNmZmZmZmY7XG4gIHotaW5kZXg6ICRkaWFsb2ctei1pbmRleDtcbiAgLy8g5LiN5pi+56S654Gr54uQaWZyYW1l55qE5rua5Yqo5p2hXG4gIC8vICYuZmlyZWZveC1vYmplY3Qge1xuICAvLyAgIHdpZHRoOiBjYWxjKDEwMCUgKyAxNXB4KTtcbiAgLy8gfVxufVxuXG5Aa2V5ZnJhbWVzIGZhZGVJbiB7XG4gIGZyb20ge1xuICAgIG9wYWNpdHk6IDA7XG4gIH1cbiAgdG8ge1xuICAgIG9wYWNpdHk6IDE7XG4gIH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+    <style data-id="immersive-translate-input-injected-css">
+        .immersive-translate-input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 2147483647;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .immersive-translate-attach-loading::after {
+            content: " ";
+
+            --loading-color: #f78fb6;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: block;
+            margin: 12px auto;
+            position: relative;
+            color: white;
+            left: -100px;
+            box-sizing: border-box;
+            animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-2000%, -50%);
+            z-index: 100;
+        }
+
+        .immersive-translate-loading-spinner {
+            vertical-align: middle !important;
+            width: 10px !important;
+            height: 10px !important;
+            display: inline-block !important;
+            margin: 0 4px !important;
+            border: 2px rgba(221, 244, 255, 0.6) solid !important;
+            border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+            border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+            border-radius: 50% !important;
+            padding: 0 !important;
+            -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+            animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+        }
+
+        @-webkit-keyframes immersive-translate-loading-animation {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+
+            to {
+                -webkit-transform: rotate(359deg);
+            }
+        }
+
+        @keyframes immersive-translate-loading-animation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(359deg);
+            }
+        }
+
+        .immersive-translate-input-loading {
+            --loading-color: #f78fb6;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: block;
+            margin: 12px auto;
+            position: relative;
+            color: white;
+            left: -100px;
+            box-sizing: border-box;
+            animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+        }
+
+        @keyframes immersiveTranslateShadowRolling {
+            0% {
+                box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+                    0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+            }
+
+            12% {
+                box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+                    0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+            }
+
+            25% {
+                box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+                    0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+            }
+
+            36% {
+                box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+                    100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+            }
+
+            50% {
+                box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+                    110px 0 var(--loading-color), 100px 0 var(--loading-color);
+            }
+
+            62% {
+                box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+                    120px 0 var(--loading-color), 110px 0 var(--loading-color);
+            }
+
+            75% {
+                box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+                    130px 0 var(--loading-color), 120px 0 var(--loading-color);
+            }
+
+            87% {
+                box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+                    200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+            }
+
+            100% {
+                box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+                    200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        .immersive-translate-toast {
+            display: flex;
+            position: fixed;
+            z-index: 2147483647;
+            left: 0;
+            right: 0;
+            top: 1%;
+            width: fit-content;
+            padding: 12px 20px;
+            margin: auto;
+            overflow: auto;
+            background: #fef6f9;
+            box-shadow: 0px 4px 10px 0px rgba(0, 10, 30, 0.06);
+            font-size: 15px;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .immersive-translate-toast-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .immersive-translate-toast-hidden {
+            margin: 0 20px 0 72px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .immersive-translate-toast-close {
+            color: #666666;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 768px) {
+            .immersive-translate-toast {
+                top: 0;
+                padding: 12px 0px 0 10px;
+            }
+
+            .immersive-translate-toast-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .immersive-translate-toast-hidden {
+                margin: 10px auto;
+            }
+        }
+
+        .immersive-translate-modal {
+            display: none;
+            position: fixed;
+            z-index: 2147483647;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            font-size: 15px;
+        }
+
+        .immersive-translate-modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 40px 24px 24px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 270px;
+            font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+                "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                "Segoe UI Symbol", "Noto Color Emoji";
+            position: relative;
+        }
+
+        @media screen and (max-width: 768px) {
+            .immersive-translate-modal-content {
+                margin: 50% auto !important;
+            }
+        }
+
+        .immersive-translate-modal .immersive-translate-modal-content-in-input {
+            max-width: 500px;
+        }
+
+        .immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+            text-align: left;
+            max-height: unset;
+        }
+
+        .immersive-translate-modal-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #333333;
+        }
+
+        .immersive-translate-modal-body {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333333;
+            word-break: break-all;
+            margin-top: 24px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .immersive-translate-modal-body {
+                max-height: 250px;
+                overflow-y: auto;
+            }
+        }
+
+        .immersive-translate-close {
+            color: #666666;
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .immersive-translate-close:hover,
+        .immersive-translate-close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .immersive-translate-modal-footer {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .immersive-translate-btn {
+            width: fit-content;
+            color: #fff;
+            background-color: #ea4c89;
+            border: none;
+            font-size: 16px;
+            margin: 0 8px;
+            padding: 9px 30px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .immersive-translate-btn:hover {
+            background-color: #f082ac;
+        }
+
+        .immersive-translate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .immersive-translate-btn:disabled:hover {
+            background-color: #ea4c89;
+        }
+
+        .immersive-translate-cancel-btn {
+            /* gray color */
+            background-color: rgb(89, 107, 120);
+        }
+
+        .immersive-translate-cancel-btn:hover {
+            background-color: hsl(205, 20%, 32%);
+        }
+
+        .immersive-translate-action-btn {
+            background-color: transparent;
+            color: #ea4c89;
+            border: 1px solid #ea4c89;
+        }
+
+        .immersive-translate-btn svg {
+            margin-right: 5px;
+        }
+
+        .immersive-translate-link {
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-drag: none;
+            text-decoration: none;
+            color: #007bff;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .immersive-translate-primary-link {
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-drag: none;
+            text-decoration: none;
+            color: #ea4c89;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .immersive-translate-modal input[type="radio"] {
+            margin: 0 6px;
+            cursor: pointer;
+        }
+
+        .immersive-translate-modal label {
+            cursor: pointer;
+        }
+
+        .immersive-translate-close-action {
+            position: absolute;
+            top: 2px;
+            right: 0px;
+            cursor: pointer;
+        }
+
+        .imt-image-status {
+            background-color: rgba(0, 0, 0, 0.5) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 16px !important;
+        }
+
+        .imt-image-status img,
+        .imt-image-status svg,
+        .imt-img-loading {
+            width: 28px !important;
+            height: 28px !important;
+            margin: 0 0 8px 0 !important;
+            min-height: 28px !important;
+            min-width: 28px !important;
+            position: relative !important;
+        }
+
+        .imt-img-loading {
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+            background-size: 28px 28px;
+            animation: image-loading-rotate 1s linear infinite !important;
+        }
+
+        .imt-image-status span {
+            color: var(--bg-2, #fff) !important;
+            font-size: 14px !important;
+            line-height: 14px !important;
+            font-weight: 500 !important;
+            font-family: "PingFang SC", Arial, sans-serif !important;
+        }
+
+        @keyframes image-loading-rotate {
+            from {
+                transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="back">
+        <h1>熊本市教育センター　熊本市地域情報ネットワーク(e-net)</h1>
+        <div class="topimage"><img src="img/braindumps_top.png" alt="中学数学問題集"></div>
+        <div id="main">
+            <div id="nav">
+                <ul>
+                    <li><a href="../index.html"><img src="../watakuma/img/home_off.jpg">HOME</a></li>
+                    <li>＞</li>
+                    <li>教材・素材集</li>
+                    <li>＞</li>
+                    <li>中学数学問題集</li>
+                </ul>
+            </div>
+            <div id="sub_full_contents">
+                <h2 class="sz_sctitle">中学数学問題集</h2>
+                <p>問題集　～　スタディエイドで作成した問題です。</p>
+                <p>リンクをクリックするとpdfが開きます。</p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th width="290px">中学１年生</th>
+                            <th width="180px">問題(ページ数)</th>
+                            <th width="180px">解答(ページ数)</th>
+                        </tr>
+                        <tr>
+                            <td class="tangen">１章　正の数・負の数</td>
+                            <td><a href="pdf/1_1_question.pdf" target="_blank">問題(6p)</a></td>
+                            <td><a href="pdf/1_1_answer.pdf" target="_blank">解答(6p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">２章　 文字の式</td>
+                            <td><a href="pdf/1_2_question.pdf" target="_blank">問題(6p)</a></td>
+                            <td><a href="pdf/1_2_answer.pdf" target="_blank">解答(6p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">３章 　方程式</td>
+                            <td><a href="pdf/1_3_question.pdf" target="_blank">問題(6p)</a></td>
+                            <td><a href="pdf/1_3_answer.pdf" target="_blank">解答(6p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">４章 　変化と対応</td>
+                            <td><a href="pdf/1_4_question.pdf" target="_blank">問題(6p)</a></td>
+                            <td><a href="pdf/1_4_answer.pdf" target="_blank">解答(7p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">５章 　平面図形</td>
+                            <td><a href="pdf/1_5_question.pdf" target="_blank">問題(3p)</a></td>
+                            <td><a href="pdf/1_5_answer.pdf" target="_blank">解答(5p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">６章 　空間図形</td>
+                            <td><a href="pdf/1_6_question.pdf" target="_blank">問題(4p)</a></td>
+                            <td><a href="pdf/1_6_answer.pdf" target="_blank">解答(5p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">７章 　資料の活用</td>
+                            <td><a href="pdf/1_7_question.pdf" target="_blank">問題(3p)</a></td>
+                            <td><a href="pdf/1_7_answer.pdf" target="_blank">解答(4p)</a></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>問題　34p</td>
+                            <td>解答　39p</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th width="290px">中学２年生</th>
+                            <th width="180px">問題(ページ数)</th>
+                            <th width="180px">解答(ページ数)</th>
+                        </tr>
+                        <tr>
+                            <td class="tangen">１章 　式の計算</td>
+                            <td><a href="pdf/2_1_question.pdf" target="_blank">問題(5p)</a></td>
+                            <td><a href="pdf/2_1_answer.pdf" target="_blank">解答(5p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">２章 　連立方程式</td>
+                            <td><a href="pdf/2_2_question.pdf" target="_blank">問題(6p)</a></td>
+                            <td><a href="pdf/2_2_answer.pdf" target="_blank">解答(6p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">３章 　一次関数</td>
+                            <td><a href="pdf/2_3_question.pdf" target="_blank">問題(5p)</a></td>
+                            <td><a href="pdf/2_3_answer.pdf" target="_blank">解答(6p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">４章 　図形の調べ方</td>
+                            <td><a href="pdf/2_4_question.pdf" target="_blank">問題(5p)</a></td>
+                            <td><a href="pdf/2_4_answer.pdf" target="_blank">解答(6p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">５章 　図形の性質と証明</td>
+                            <td><a href="pdf/2_5_question.pdf" target="_blank">問題(6p)</a></td>
+                            <td><a href="pdf/2_5_answer.pdf" target="_blank">解答(7p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">６章 　確率</td>
+                            <td><a href="pdf/2_6_question.pdf" target="_blank">問題(2p)</a></td>
+                            <td><a href="pdf/2_6_answer.pdf" target="_blank">解答(2p)</a></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>問題　29p</td>
+                            <td>解答　32p</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th width="290px">中学３年生</th>
+                            <th width="180px">問題(ページ数)</th>
+                            <th width="180px">解答(ページ数)</th>
+                        </tr>
+                        <tr>
+                            <td class="tangen">１章 　式の展開と因数分解</td>
+                            <td><a href="pdf/3_1_question.pdf" target="_blank">問題(6p)</a></td>
+                            <td><a href="pdf/3_1_answer.pdf" target="_blank">解答(6p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">２章 　平方根</td>
+                            <td><a href="pdf/3_2_question.pdf" target="_blank">問題(4p)</a></td>
+                            <td><a href="pdf/3_2_answer.pdf" target="_blank">解答(4p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">３章 　二次方程式</td>
+                            <td><a href="pdf/3_3_question.pdf">問題(4p)</a></td>
+                            <td><a href="pdf/3_3_answer.pdf" target="_blank">解答(4p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">４章 　関数y=ax2</td>
+                            <td><a href="pdf/3_4_question.pdf" target="_blank">問題(5p)</a></td>
+                            <td><a href="pdf/3_4_answer.pdf" target="_blank">解答(6p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">５章 　図形と相似</td>
+                            <td><a href="pdf/3_5_question.pdf" target="_blank">問題(8p)</a></td>
+                            <td><a href="pdf/3_5_answer.pdf" target="_blank">解答(10p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">６章 　円の性質</td>
+                            <td><a href="pdf/3_6_question.pdf" target="_blank">問題(3p)</a></td>
+                            <td><a href="pdf/3_6_answer.pdf" target="_blank">解答(4p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">７章 　三平方の定理</td>
+                            <td><a href="pdf/3_7_question.pdf" target="_blank">問題(4p)</a></td>
+                            <td><a href="pdf/3_7_answer.pdf" target="_blank">解答(4p)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="tangen">８章 　標本調査</td>
+                            <td><a href="pdf/3_8_question.pdf" target="_blank">問題(1p)</a></td>
+                            <td><a href="pdf/3_8_answer.pdf" target="_blank">解答(1p)</a></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>問題　35p</td>
+                            <td>解答　39p</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <p>★<a href="../kyozai_bukai/sugaku/fukui-index.htm" target="_blank">数学教師のための手作り問題集</a></p>
+                <br>
+                <p>★<a href="../video/technique/sugaku/01_sugaku.html"
+                        target="_blank">先生ちゃんねる　先輩から学ぶ教育技術<br>　　福井俊介先生の部屋「数学授業のワンポイント」</a></p>
+                <div id="up"> <a href="#back"><img src="../watakuma/img/up.png"
+                            title="このページのトップへ"><span>このページのトップへ</span></a> </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <p>©Kumamoto Educational Center</p>
+    </div>
+
+
+    <div data-v-4f04decd="" class="MOJiWebPlugins" style="display: none;">
+        <div data-v-4f04decd="" class="TransIcon" style="left: 836.453px; top: 87px;"><img data-v-4f04decd=""
+                src="chrome-extension://edoiodnmpjehmemkkfmnefmkboeaahlf/static/images/logo.png"></div>
+        <div data-v-4f04decd="" id="MOJiWebExtensionpanel" class="TransDialog"
+            style="left: 0px; top: 0px; width: 392px; height: 448px; display: none;"><object data-v-4f04decd=""
+                data="chrome-extension://edoiodnmpjehmemkkfmnefmkboeaahlf/panel.html?type=content" type="text/html"
+                class="MOJiWebExtensionpanelObject" style="display: none;"></object>
+            <div data-v-4f04decd="" class="dragBlock icon">
+                <div data-v-4f04decd="" class="top-drap-block"></div>
+                <div data-v-4f04decd="" class="left-drap-block"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<div id="immersive-translate-popup" style="all: initial"></div>
+
+</html>
